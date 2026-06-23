@@ -99,6 +99,28 @@ final_clean_payload = dcc.run(user_task=task, initial_data=data)
 print(final_clean_payload)
 ```
 
+## 🧪 Production Readiness (Validation Criteria)
+
+To know that EndoLoop is fully functional and production-ready, we rely on the mathematical convergence of the loop. A dynamic control skill is successful when it demonstrates stability against chaos. You can verify its absolute success through three critical stress tests:
+
+### 1. The Convergence Test (Logging the Refinement)
+The skill is functional if the loop actually triggers and "converges" (closes successfully). When testing, monitor the console:
+- **Failure**: If the AI always responds `[STATE: APPROVED]` on the first try, even with intentionally broken code or data, the auditor is "lazy".
+- **Success**: If you introduce an intentional error (e.g., broken Docker syntax) and the console prints:
+  ```text
+  🔄 [EndLoop Iteration 1] Self-correction triggered.
+  🔄 [EndLoop Iteration 2] Self-correction triggered.
+  ```
+  And then stops, delivering the corrected code with `[STATE: APPROVED]`. This means endogenous pruning successfully mutated the state.
+
+### 2. Robustness Against Infinite Loops (The Mirror Trap)
+A major risk of AI metacognition is getting stuck endlessly critiquing itself without reaching a solution.
+- **Success Criterion**: The skill must converge to the `APPROVED` state in 1 or 2 refinement cycles on average. If it reaches the `max_loops` limit, it must throw a controlled `TimeoutError` rather than hallucinating or breaking down. This proves the damage control system is fully functional.
+
+### 3. Immunity to Error Dragging (The Clean Payload Test)
+In traditional prompting, if an AI makes an error in step 1, it drags it and justifies it until the end.
+- **Success Criterion**: The final output returned after the `APPROVED` state must be 100% clean of internal discussion. It must not contain phrases like *"Oh, I made a mistake, here is the correction"*. The executor must strip all cognitive traces and deliver only the executable, perfect payload.
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you'd like to improve the DCC prompts, optimize the loop logic, or add examples for other frameworks (like LangChain or CrewAI), please follow these steps:
