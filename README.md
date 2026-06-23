@@ -1,4 +1,4 @@
-# Dynamic Context Control (DCC) Skill
+# EndLoop: Dynamic Context Control (DCC) Skill
 
 An adaptive, state-driven AI skill that leverages In-Context Learning and Endogenous Pruning to achieve autonomous self-correction. Instead of following rigid pre-defined prompt trees, this skill treats the LLM as a dynamic control system that audits its own working memory in real-time.
 
