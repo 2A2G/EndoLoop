@@ -1,5 +1,8 @@
 # EndLoop: Dynamic Context Control (DCC) Skill
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![Status: Production-Ready](https://img.shields.io/badge/Status-Production--Ready-success.svg)](https://github.com/2A2G/EndoLoop)
 > [!NOTE]
 > An adaptive, state-driven AI skill that leverages In-Context Learning and Endogenous Pruning to achieve autonomous self-correction. Instead of following rigid pre-defined prompt trees, this skill treats the LLM as a dynamic control system that audits its own working memory in real-time.
 
