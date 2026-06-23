@@ -78,17 +78,25 @@ See [`dcc_skill.py`](dcc_skill.py) for the complete Python implementation using 
 ### 🎯 Usage Example
 
 ```python
-from dcc_skill import DynamicContextControlSkill
+from endloop import EndLoopSystem
 
-# Initialize the skill
-dcc = DynamicContextControlSkill(model="gpt-4o")
+# Initialize the skill with custom strictness parameters
+dcc = EndLoopSystem(
+    model="gpt-4o",
+    generation_temperature=0.7, # Be creative during generation
+    audit_temperature=0.0,      # Be ruthlessly strict during audit
+    custom_checkpoints=[
+        "PERFORMANCE: Ensure the code does not use O(N^2) loops if possible.",
+        "STYLE: Do not use single-letter variables."
+    ]
+)
 
 # Run an autonomous task
 task = "Write a Python script that reads a CSV and outputs a JSON summary."
 data = "id,name,age\n1,Alice,30\n2,Bob,25"
 
-final_output = dcc.run(user_task=task, initial_data=data)
-print(final_output)
+final_clean_payload = dcc.run(user_task=task, initial_data=data)
+print(final_clean_payload)
 ```
 
 ## 🤝 Contributing
